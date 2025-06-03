@@ -1,0 +1,1498 @@
+/* ========================
+   CSS VARIABLES
+======================== */
+:root {
+  /* Colors */
+  --bg-color: #ffffff;
+  --text-color: #333;
+  --primary-color: #007bff; /* Standard Bootstrap primary, but overridden for custom buttons */
+  --card-bg: #f8f9fa;
+  --header-bg: #ffffff;
+  --nav-link-color: #333;
+  --nav-link-hover-color: #22e1d0; /* Your desired button color and accent */
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --button-bg: #65eade; /* Keep this for Bokun button if it's different */
+  --button-hover-bg: #22e1d0; /* Keep this for Bokun button if it's different */
+  --button-active-bg: #38e4d4; /* Keep this for Bokun button if it's different */
+  --button-text-color: #FFFFFF;
+  --border-color: #eee;
+  --whatsapp-bg: #25d366;
+
+  /* Spacing */
+  --nav-item-spacing: 0 15px;
+  --button-padding: 12px 24px;
+  --card-padding: 1em 1.5em;
+
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+}
+
+
+/* ========================
+   BASE STYLES
+======================== */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.card {
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* General card hover transition */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* General card hover shadow */
+}
+
+/* Card content alignment for titles and text */
+.card-title {
+  text-align: center;
+}
+
+.card-text {
+  text-align: justify;
+  margin-bottom: 1.5rem; /* Added space between text and button */
+}
+
+/* Ensure card-body is a flex container for vertical alignment of contents */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: space-between; /* Distribute space to push buttons to bottom */
+  /* padding: 1.25rem; /* Bootstrap default padding - no need to explicitly add if Bootstrap is loaded */
+}
+
+/* For buttons specifically within card-body, push to bottom */
+.card-body a.btn {
+  margin-top: auto; /* Pushes the button to the bottom of the flex container */
+  align-self: center; /* Ensures button centers itself if card-body is flex-column */
+}
+
+
+/* ========================
+   COMPONENTS
+======================== */
+
+/* Navigation */
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.nav-item {
+  margin: var(--nav-item-spacing);
+}
+
+.nav-link {
+  display: block;
+  padding: 8px 12px;
+  color: var(--nav-link-color);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--nav-link-hover-color);
+}
+
+.nav-link::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  background-color: var(--nav-link-hover-color);
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 80%;
+}
+
+.nav-link.active {
+  font-weight: 700;
+}
+
+/* Bokun Button - Moved from inline HTML style */
+#bokun_771c5662_5648_44cb_b014_0e61061d172f {
+  display: inline-block;
+  padding: 10px 20px; /* Using explicit values as they differ slightly from --button-padding */
+  background: var(--button-bg);
+  border-radius: 5px; /* Using explicit value as it differs from --button-border-radius */
+  box-shadow: 0 8px 12px rgba(0,0,0,0.19); /* Using explicit value as it differs slightly from --box-shadow-color */
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  text-align: center;
+  color: var(--button-text-color);
+  border: none;
+  cursor: pointer;
+  transition: background .2s ease; /* Using explicit value as it differs slightly from --transition-fast */
+}
+
+#bokun_771c5662_5648_44cb_b014_0e61061d172f:hover{
+  background: var(--button-hover-bg);
+}
+
+#bokun_771c5662_5648_44cb_b014_0e61061d172f:active{
+  background: var(--button-active-bg);
+}
+
+
+/* Card Cover */
+.card-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* WhatsApp Widget */
+.whatsapp-widget {
+  position: fixed;
+  bottom: 20px;
+  left: clamp(10px, 2vw, 20px);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.whatsapp-btn {
+  background-color: var(--whatsapp-bg);
+  color: white;
+  padding: var(--card-padding);
+  border-radius: 2em;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-fast);
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+/* Custom button colors (btn-primary, btn-secondary) */
+/* Set to match the h2 color and add letter spacing */
+.btn-primary,
+.btn-secondary {
+  background-color: var(--nav-link-hover-color);
+  border-color: var(--nav-link-hover-color);
+  color: var(--button-text-color); /* Ensure text is white */
+  letter-spacing: 0.05em; /* A little space between text */
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  /* Darken the color slightly on hover. If you have SASS, use darken(var(--nav-link-hover-color), 10%); */
+  background-color: #1eaf9e; /* Slightly darker shade of #22e1d0 */
+  border-color: #1eaf9e;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.btn-primary:focus,
+.btn-secondary:focus {
+  box-shadow: 0 0 0 0.25rem rgba(34, 225, 208, 0.5); /* Custom focus ring matching the color */
+}
+
+/* Outline button adjustments */
+.btn-outline-primary {
+    color: var(--nav-link-hover-color);
+    border-color: var(--nav-link-hover-color);
+    letter-spacing: 0.05em; /* Apply letter spacing here too */
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--nav-link-hover-color);
+    color: var(--button-text-color);
+    border-color: var(--nav-link-hover-color);
+}
+
+
+/* ========================
+   UTILITIES
+======================== */
+.border-bottom {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.transition-all {
+  transition: all var(--transition-fast);
+}
+
+/* ========================
+   MEDIA QUERIES
+======================== */
+@media (max-width: 768px) {
+  .whatsapp-btn {
+    padding: 0.7em;
+    border-radius: 50%;
+  }
+}
+
+/*----------------------------------------------CSS FOR THE SERVICES PAGE------------------------------------------------------------------------*/
+
+.surf-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.surf-image-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 992px) {
+  .surf-image-container {
+    width: 50%;
+  }
+}
+
+.surf-image-aspect {
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+@media (min-width: 992px) {
+  .surf-image-aspect {
+    padding-bottom: 0;
+    height: auto;
+  }
+}
+
+.surf-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+  border-radius: 12px 12px 0 0;
+}
+
+@media (min-width: 992px) {
+  .surf-image {
+    border-radius: 12px 0 0 12px;
+  }
+}
+
+.surf-image:hover {
+  transform: scale(1.05);
+}
+
+.surf-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
+  z-index: 10;
+  border-radius: 12px 12px 0 0;
+}
+
+@media (min-width: 992px) {
+  .surf-image-overlay {
+    border-radius: 12px 0 0 12px;
+  }
+}
+
+.surf-image-text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .surf-image-text {
+    bottom: 15px;
+    font-size: 20px;
+  }
+}
+
+.surf-text-container {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 992px) {
+  .surf-text-container {
+    width: 50%;
+    padding: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .surf-text-container {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .surf-text-container {
+    padding: 40px;
+  }
+}
+
+.surf-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.surf-title {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+@media (min-width: 576px) {
+  .surf-title {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 768px) {
+  .surf-title {
+    font-size: 32px;
+  }
+}
+
+.surf-description {
+  font-size: 14px;
+  color: #718096;
+}
+
+.surf-divider {
+  margin: 20px 0;
+}
+
+.surf-divider-line {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, rgba(237, 76, 102, 0.5), transparent);
+}
+
+.surf-highlights-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.surf-highlights-description {
+  font-size: 14px;
+  color: #718096;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+.surf-info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.surf-info-block {
+  background-color: #f7fafc;
+  border-radius: 4px;
+  padding: 16px;
+  flex: 1;
+  min-width: 100px;
+  transition: box-shadow 0.3s;
+}
+
+.surf-info-block:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.surf-info-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.surf-info-label {
+  font-size: 14px;
+  color: #718096;
+}
+
+.surf-features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 576px) {
+  .surf-features-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.surf-feature {
+  display: flex;
+  align-items: center;
+}
+
+.surf-feature-icon-container {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background-color: rgba(193, 191, 191, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 576px) {
+  .surf-feature-icon-container {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.surf-feature-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: #22e1d0;
+}
+
+.surf-feature-text {
+  font-size: 14px;
+}
+
+.surf-book-link {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.surf-book-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  outline: none;
+  pointer-events: auto;
+  opacity: 1;
+  background-color: #22e1d0;
+  color: white;
+  font-size: 16px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 15px -3px rgba(237, 76, 102, 0.25);
+  border: 2px solid #22e1d0;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.surf-book-button:hover {
+  background-color: #22e1d0;
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(237, 76, 102, 0.4);
+}
+
+.surf-button-text {
+  position: relative;
+  z-index: 10;
+}
+
+.surf-button-shine {
+  position: absolute;
+  inset: -2px;
+  background-color: rgba(34, 225, 208, 0.5); /* Corrected RGBA syntax */
+  border-radius: 8px;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s;
+  animation: none;
+}
+
+.surf-book-button:hover .surf-button-shine {
+  opacity: 0.7;
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ---------------------------------------------General Layout--------------------------------------------------------------- */
+/* General Layout */
+/* Removed or commented out if you rely on Bootstrap's .container */
+/* .container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+} */
+
+/* Removed or commented out if you rely on a single framework's utility classes */
+/* .max-w-3xl {
+  max-width: 60rem;
+} */
+
+
+/* Heading Section */
+h2.text-3xl {
+  font-size: 1.875rem; /* 30px */
+  line-height: 2.25rem; /* 36px */
+}
+
+@media (min-width: 768px) {
+  h2.md\:text-4xl {
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+  }
+}
+
+.font-display {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem; /* 24px */
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem; /* 40px */
+}
+
+.text-muted-foreground {
+  color: #718096; /* Example muted color */
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2rem; /* 32px */
+}
+
+@media (min-width: 768px) {
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Card Styling */
+.bg-gray-50 {
+  background-color: #f7fafc; /* Light gray background */
+}
+
+.p-6 {
+  padding: 1.5rem; /* 24px */
+}
+
+.p-8 {
+  padding: 2rem; /* 32px */
+}
+
+.rounded-lg {
+  border-radius: 0.5rem; /* 8px */
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.transition-shadow {
+  transition-property: box-shadow;
+  transition-duration: 0.3s;
+}
+
+.duration-300 {
+  transition-duration: 0.3s;
+}
+
+.relative {
+  position: relative;
+}
+
+/* Icon Styling */
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.mb-4 {
+  margin-bottom: 1rem; /* 16px */
+}
+
+.space-x-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.text-primary {
+  color: #22e1d0; /* Example primary color */
+}
+
+.lucide {
+  /* General styling for the SVG icons */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.w-10 {
+  width: 2.5rem; /* 40px */
+}
+
+.h-10 {
+  height: 2.5rem; /* 40px */
+}
+
+.w-6 {
+  width: 1.5rem; /* 24px */
+}
+
+.h-6 {
+  height: 1.5rem; /* 24px */
+}
+
+.w-5 {
+  width: 1.25rem; /* 20px */
+}
+
+.h-5 {
+  height: 1.25rem; /* 20px */
+}
+
+.fill-current {
+  fill: currentColor;
+}
+
+
+/* Text Styling */
+.text-xl {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+}
+
+.italic {
+  font-style: italic;
+}
+
+.text-sm {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Border */
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+/* Links */
+.hover\:underline:hover {
+  text-decoration-line: underline;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.ml-1 {
+  margin-left: 0.25rem; /* 4px */
+}
+
+.ml-2 {
+  margin-left: 0.5rem; /* 8px */
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------FAQ´s Style--------------------------------------------------------------- */
+/* General Section Styling */
+section {
+  background-color: #f8f9fa; /* Light gray background */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+/* Headings */
+section h2 {
+  font-weight: 700;
+  font-size: 2.25rem;
+  color: #22e1d0; /* Bootstrap primary */
+}
+
+section p {
+  color: #6c757d; /* Bootstrap muted */
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Accordion Styling */
+.accordion-button {
+  font-weight: 600;
+  color: #212529;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #e7f1ff;
+  color: #3c78a7;
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  border-color: #22e1d0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.accordion-body {
+  font-size: 1rem;
+  color: #495057;
+  background-color: #ffffff;
+  border-top: 1px solid #dee2e6;
+}
+
+/* Optional: Rounded Accordion */
+.accordion-item {
+  border: none;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Animation on toggle (optional) */
+.accordion-collapse {
+  transition: height 0.3s ease;
+}
+
+/* ---------------------------------------------forms of Money Section--------------------------------------------------------------- */
+.payment-icon {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.payment-icon img {
+  max-width: 100%;
+  max-height: 36px;
+  object-fit: contain;
+}
+
+.payment-icon:hover {
+  transform: translateY(-4px);
+  cursor: pointer; /* Added for better UX */
+}
+
+
+/* ---------------------------------------------Footer Style--------------------------------------------------------------- */
+
+
+/* ========================
+   FOOTER STYLES
+======================== */
+
+footer {
+  background-color: var(--header-bg); /* same as nav bar */
+  color: var(--nav-link-color);
+  padding: 3rem 0 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+footer h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+footer ul li a {
+  color: var(--nav-link-color);
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+footer ul li a:hover,
+footer ul li a:focus {
+  color: var(--nav-link-hover-color);
+}
+
+/* Underline effect like navbar */
+footer ul li a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  background-color: var(--nav-link-hover-color);
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width var(--transition-fast);
+}
+
+footer ul li a:hover::after,
+footer ul li a:focus::after {
+  width: 80%;
+}
+
+/* Social icons */
+.footer-social a {
+  color: var(--nav-link-color);
+  font-size: 1.25rem;
+  margin-right: 1rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-social a:hover {
+  color: var(--nav-link-hover-color);
+}
+
+.footer-bottom {
+  font-size: 0.875rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.badge-soon {
+  background-color: var(--button-hover-bg);
+  color: var(--button-text-color);
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.2rem;
+  margin-left: 0.25rem;
+  vertical-align: middle;
+}
+
+/* -----------------------------Team Section-------------------------------------------------- */
+.team-section {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.section-title { /* This is a general class, consider if you want it different from section h2 */
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Team Section Specific Title (if different from general section h2) */
+.team-section .section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.team-card {
+  background-color: var(--card-bg);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  color: var(--text-color);
+  text-align: center; /* This centers the image, name, position */
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px var(--box-shadow-color);
+}
+
+.team-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-left: auto; /* Helps center the image since team-card is text-align: center */
+  margin-right: auto; /* Helps center the image */
+}
+
+.team-card .name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  /* text-align: center; /* Already handled by .team-card */
+}
+
+.team-card .position {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--nav-link-hover-color);
+  /* text-align: center; /* Already handled by .team-card */
+}
+
+.team-card .team-bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: justify; /* This will now apply to all screen sizes */
+  margin-bottom: 1rem; /* Add some space below the bio */
+}
+
+/* Team Achievements Section */
+.team-achievements {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+  justify-content: flex-start; /* Aligns achievement items to the left */
+  gap: 15px; /* Space between achievement items */
+  margin-top: auto; /* Push achievements block to the bottom before social icons */
+  margin-bottom: 1rem; /* Space below achievements */
+  width: 100%; /* Ensure it takes full width of the card */
+  padding-left: 1rem; /* Optional: Add some padding if they feel too close to the card edge */
+  padding-right: 1rem; /* Optional: Add some padding */
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+  white-space: normal; /* Prevent text from wrapping prematurely on wider screens */
+}
+
+.achievement-icon-container {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px; /* Makes it a circle */
+  background-color: rgba(193, 191, 191, 0.1); /* Light background, similar to surf-feature-icon-container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.achievement-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--nav-link-hover-color); /* Use your accent color */
+}
+
+.achievement-text {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/* Responsive adjustments for achievements and team bio */
+@media (max-width: 576px) {
+  .team-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .team-achievements {
+    padding-left: 0.5rem; /* Adjust padding for smaller screens if needed */
+    padding-right: 0.5rem;
+  }
+  .achievement-item {
+    white-space: normal; /* Allow text to wrap on very small screens if needed */
+  }
+}
+
+
+
+.team-card .team-social a {
+  color: var(--nav-link-color);
+  font-size: 1.2rem;
+  transition: color var(--transition-fast);
+  margin: 0 0.5rem; /* Add some spacing between social icons */
+}
+
+.team-card .team-social a:hover {
+  color: var(--nav-link-hover-color);
+}
+
+/* ===============================================
+   FUN FACTS SECTION - ESTILO DO TEU EXEMPLO
+=============================================== */
+
+/* As variáveis de cor do teu exemplo. Podes ajustá-las
+   para que coincidam com as variáveis globais do teu site se já as tiveres,
+   ou usá-las como estão aqui para esta secção específica. */
+   :root {
+    /* Estas são as cores do teu exemplo. Ajusta se necessário. */
+    /* Se já tens --border-color, --background-color, etc., no teu :root global,
+       não precisas de as redefinir, a menos que queiras que sejam diferentes para esta secção. */
+    --feature-border-color: #e5e7eb;      /* Cor da borda do cartão */
+    --feature-background-color: #ffffff;  /* Cor de fundo do cartão */
+    --feature-heading-color: #111827;     /* Cor do título principal do cartão */
+    --feature-subheading-color: #374151;  /* Cor do subtítulo do cartão */
+    --feature-body-text-color: #6b7280;   /* Cor do texto do corpo do cartão */
+    --feature-accent-color:  #22e1d0;      /* Cor de destaque (ícone e fundo do ícone) */
+    /* Se a tua cor de destaque principal é var(--nav-link-hover-color), podes usá-la:
+    --feature-accent-color: var(--nav-link-hover-color);
+    */
+  }
+  
+  /* Estilo para a grelha de features/factos
+     A classe .container do Bootstrap já deve centrar isto.
+     Se precisares de um contentor específico para a grelha, podes usar .features-container
+     do teu exemplo, mas certifica-te de que não entra em conflito com .container do Bootstrap.
+     Para simplificar, vou aplicar os estilos da grelha diretamente. */
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas em ecrãs maiores */
+    /* grid-template-rows: repeat(2, 1fr);  Pode não ser necessário se a altura for automática */
+    gap: 1.5rem; /* Espaço entre os cartões (24px) */
+  }
+  
+  .feature-card {
+    background-color: var(--feature-background-color);
+    border-radius: 0.5rem; /* 8px */
+    border: 1px solid var(--feature-border-color);
+    padding: 2rem; /* 32px */
+    display: flex;
+    flex-direction: column; /* Ícone e texto empilhados verticalmente */
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: rgba(34, 225, 208, 0.5); /* Cor da borda no hover do teu exemplo */
+    /* Se usares a tua cor de destaque:
+    border-color: var(--feature-accent-color);
+    */
+  }
+  
+  .icon-wrapper {
+    display: inline-flex; /* Para o SVG alinhar bem */
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    /* Cor de fundo do ícone do teu exemplo. NOTA: A cor do ícone em si é herdada (currentColor) ou definida no SVG. */
+    background-color: rgba(59, 130, 246, 0.1); /* Tom claro de --feature-accent-color */
+    /* Se usares a tua cor de destaque (ex: #22e1d0):
+    background-color: rgba(34, 225, 208, 0.1);
+    */
+    border-radius: 0.5rem; /* 8px */
+    margin-bottom: 1.25rem; /* 20px, espaço abaixo do ícone */
+    color: var(--feature-accent-color); /* Cor para o SVG (currentColor) */
+    /* Se usares a tua cor de destaque:
+    color: var(--nav-link-hover-color);
+    */
+  }
+  
+  .feature-heading {
+    font-family: 'Inter', sans-serif; /* Fonte do teu exemplo */
+    font-weight: 600;
+    font-size: 1.25rem; /* 20px (ajustei um pouco o do teu exemplo que era 24px, pode ser grande) */
+    color: var(--feature-heading-color);
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem; /* 8px */
+  }
+  
+  .feature-subheading {
+    font-family: 'Inter', sans-serif; /* Fonte do teu exemplo */
+    font-size: 1rem; /* 16px */
+    font-weight: 500;
+    color: var(--feature-subheading-color);
+    margin-bottom: 0.75rem; /* 12px */
+  }
+  
+  .feature-body {
+    font-size: 0.875rem; /* 14px */
+    color: var(--feature-body-text-color);
+    flex-grow: 1; /* Para que o corpo do texto ocupe o espaço restante, útil se os cartões tiverem alturas fixas ou para alinhar botões no fundo, se existissem. */
+    line-height: 1.6;
+  }
+  
+  /* Media Query para responsividade (do teu exemplo) */
+  @media (max-width: 768px) { /* Tablets e abaixo */
+    .features-grid {
+      grid-template-columns: 1fr; /* 1 coluna em ecrãs menores */
+      /* grid-template-rows: repeat(4, auto); Não é estritamente necessário definir linhas */
+    }
+  }
+  
+
+
+
+/* --------------------------------------------- Discover Madeira Page Styles --------------------------------------------------------------- */
+
+/* Hero Section Specifics (if you want more control beyond inline styles) */
+/* You already have good inline styles for the banner, but if you want to reuse or refine,
+   you might add a class like below to your HTML hero div and style it here. */
+   .discover-hero-banner {
+    /* Example: If you want text-shadow for better readability on busy backgrounds */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  /* --- New: Styling for consistent card image heights --- */
+  .card-img-fixed-height {
+    width: 100%; /* Ensure it fills the card width */
+    height: 400px; /* Set a fixed height for all activity cards */
+    object-fit: cover; /* This crops the image to cover the area without distortion */
+    border-top-left-radius: calc(0.375rem - 1px); /* Match Bootstrap's card border-radius */
+    border-top-right-radius: calc(0.375rem - 1px); /* Match Bootstrap's card border-radius */
+  }
+
+  /* Adjust height for smaller screens if needed, though 'cover' usually handles well */
+  @media (max-width: 767.98px) {
+    .card-img-fixed-height {
+      height: 180px; /* Slightly smaller height on mobile for better fit */
+    }
+  }
+
+
+  /* General Section Styling (if you want consistent padding/margins) */
+  /* You're already using Bootstrap's py-5 and mb-4, but these provide more control. */
+  .discover-section-heading {
+    font-size: 2.5rem; /* Adjust as needed */
+    font-weight: 700;
+    color: var(--text-color); /* Or a specific color like #22e1d0 */
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  /* Card image adjustments for Partners section (especially for logos) */
+  /* This is important if your logos aren't square or have varying aspect ratios. */
+  .card-img-top-logo {
+    max-width: 150px; /* Max width for partner logos */
+    height: auto;
+    max-height: 80px; /* Max height to keep logos consistent */
+    object-fit: contain; /* Ensures the entire logo is visible within its bounds */
+    margin: 15px auto; /* Centers the logo and adds vertical spacing */
+  }
+  
+  /* List Group Item Hover Effect (for Restaurants, Bars, etc.) */
+  .list-group-item:hover {
+    background-color: var(--card-bg); /* Use a light background on hover */
+    transform: translateX(5px); /* Small slide effect */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow on hover */
+  }
+
+  .list-group-item {
+    transition: all 0.2s ease-in-out; /* Add transition for smoothness */
+  }
+
+  /* Specific styling for the 'Other Activities & Hidden Gems' section if you want different button colors */
+  .section-more-activities .btn-secondary {
+      background-color: #6c757d; /* Bootstrap secondary */
+      border-color: #6c757d;
+      color: white;
+  }
+
+  .section-more-activities .btn-secondary:hover {
+      background-color: #5a6268;
+      border-color: #545b62;
+  }
+
+  /* Optional: Adjustments for headings inside sections */
+  /* This ensures consistency if you use h3/h4 in new sections */
+  section h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-color); /* Or a specific color */
+  }
+
+  .card-img-container {
+    position: relative; /* Allows absolute positioning of the logo inside */
+    /* Ensure this container doesn't add extra height if the img has specific height rules */
+    /* If card-img-fixed-height is on the image, this container should just wrap it. */
+  }
+  
+  .card-img-overlay-logo {
+    position: absolute;
+    top: 10px;          /* Adjust for vertical position from the top */
+    left: 10px;         /* Adjust for horizontal position from the left */
+    width: 40px;        /* Adjust logo width */
+    height: 40px;       /* Adjust logo height */
+    /* rounded-circle class from Bootstrap will make it round */
+    border: 2px; /* Optional: adds a white border like your example */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Optional: adds a subtle shadow for depth */
+    z-index: 10;        /* Ensures the logo is on top of the main image */
+    object-fit: cover;  /* Ensures the logo image covers the area well if not perfectly square */
+  }
+  
+
+
+
+/* =================================CAREERS PAGE STYLES================================================= */
+
+/* Estilo para o título principal da página de carreiras, se necessário */
+/* .display-5 é uma classe Bootstrap, podes ajustar aqui se quiseres. */
+
+.career-card {
+  /* A tua classe .card em style1.css já aplica sombra e transição no hover.
+     Podes adicionar mais personalizações aqui se quiseres, por exemplo: */
+  border: 1px solid var(--border-color, #eee); /* Adiciona uma borda subtil se não existir */
+}
+
+.career-card-img {
+  width: 100%;
+  height: 220px; /* Altura fixa para as imagens dos cartões de carreira */
+  object-fit: cover; /* Garante que a imagem cobre a área sem distorcer */
+}
+
+.career-card .card-title {
+  font-weight: 600; /* Título do cartão um pouco mais destacado */
+  color: var(--text-color); /* Usa a cor de texto principal definida */
+  font-size: 1.2rem; /* Tamanho da fonte para o título do cartão */
+}
+
+.career-card .card-text.small {
+  font-size: 0.875rem; /* Texto da descrição um pouco menor (14px) */
+  line-height: 1.65;
+  color: var(--text-color-muted, #555e68); /* Cor para o texto da descrição */
+}
+
+.career-card-icon {
+  font-size: 1.75rem; /* Tamanho dos ícones (ex: bi-tsunami) */
+  color: var(--nav-link-hover-color); /* Usa a tua cor de destaque principal */
+  /* Considera adicionar um pequeno espaçamento vertical se necessário:
+     position: relative;
+     top: -2px; 
+  */
+}
+
+.career-card .btn-primary {
+  /* O teu style1.css já deve estilizar .btn-primary.
+     Se quiseres um tamanho específico para estes botões: */
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  /* letter-spacing: 0.03em; /* Adiciona um pouco de espaçamento entre letras se gostares */
+}
+
+/* Ajuste para o hover do cartão de carreira para um efeito mais pronunciado se quiseres */
+.career-card:hover {
+  transform: translateY(-8px); /* Eleva um pouco mais no hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); 
+}
+
+.card.career-card {
+  overflow: visible; 
+}
+
+
+
+/* =================================
+   NEW MOBILE NAVIGATION & OVERLAY STYLES START
+================================= */
+
+/* ========================
+   MOBILE-SPECIFIC BODY PADDING
+======================== */
+@media (max-width: 767.98px) { /* Affects screens smaller than Bootstrap's md breakpoint */
+  body {
+    padding-top: 60px; /* Adjust this value based on your mobile fixed header's actual height */
+  }
+}
+
+#mainNavbar .navbar-brand img {
+  max-height: 50px; /* Adjust as needed for your logo */
+  width: auto;
+}
+
+/* Mobile Overlay Menu Styles */
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-color: var(--header-bg, #ffffff);
+  z-index: 1045; /* High z-index to cover content. Bootstrap fixed-top is 1030, modals are higher. */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  
+  /* Base display style, d-none in HTML overrides this initially */
+  display: flex; 
+  flex-direction: column;
+
+  /* For transition effects controlled by JS adding/removing .active */
+  opacity: 0;
+  /* visibility: hidden; -- Using d-none primarily for show/hide. Opacity handles fade. */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.mobile-nav-overlay.active { /* This class is added by JS to show the overlay with transition */
+  opacity: 1;
+  /* visibility: visible; */
+}
+
+.mobile-nav-overlay .btn-close {
+  font-size: 0.9rem; /* Adjust size of (X) icon if needed */
+}
+
+.mobile-nav-overlay .mobile-nav-link {
+  font-size: 1.35rem; 
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  display: block; /* Make whole area clickable */
+  transition: color 0.2s ease;
+}
+
+.mobile-nav-overlay .mobile-nav-link:hover,
+.mobile-nav-overlay .mobile-nav-link:focus {
+  color: var(--nav-link-hover-color);
+}
+
+/* .mobile-nav-link.disabled is handled by Bootstrap's .disabled and .text-muted classes in HTML */
+
+.mobile-nav-overlay .badge { /* General styling for "Soon" badges if not using .badge-soon or inline styles */
+  font-size: 0.7rem;
+  padding: 0.25em 0.5em;
+  /* Consider using your .badge-soon class in HTML for these badges for consistency */
+}
+
+
+/* Remove default border from navbar-toggler (hamburger button) */
+#mainNavbar .navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.5rem; /* Adjust padding if icon looks too cramped */
+}
+#mainNavbar .navbar-toggler:focus {
+  box-shadow: none; /* Remove focus outline if desired */
+}
+
+/* Ensure the icon color for hamburger is correct if not set inline in HTML */
+#mainNavbar .navbar-toggler i {
+  color: var(--text-color); /* Or var(--nav-link-color) if preferred for icons */
+}
+
+/* =================================
+ NEW MOBILE NAVIGATION & OVERLAY STYLES END
+================================= */
+
+
+
+
+
+
+
+/* Custom styling for carousel images */
+.carousel-img-fit {
+  height: 500px; /* Adjust height as needed */
+  object-fit: cover; /* Ensures images cover the area without distortion */
+  object-position: center; /* Centers the image within its container */
+}
+
+/* Optional: Adjust height for smaller screens */
+@media (max-width: 767.98px) {
+  .carousel-img-fit {
+    height: 250px; /* Smaller height on mobile */
+  }
+}
+
+/* Optional: styling for carousel captions to improve readability */
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border-radius: 5px;
+  padding: 10px 15px;
+  bottom: 20px; /* Adjust vertical position */
+}
+
+.carousel-caption h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.carousel-caption p {
+  font-size: 1rem;
+  color: #f8f9fa;
+  margin-bottom: 0;
+}
