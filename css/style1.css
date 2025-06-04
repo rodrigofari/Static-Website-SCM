@@ -528,7 +528,8 @@ body {
   padding: 14px 28px;
   border-radius: 8px;
   width: 100%;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* REMOVED: Redundant box-shadow declaration. The one below takes precedence. */
+  /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); */
   box-shadow: 0 10px 15px -3px rgba(237, 76, 102, 0.25);
   border: 2px solid #22e1d0;
   transition: all 0.3s;
@@ -830,6 +831,13 @@ section p {
   border-top: 1px solid #dee2e6;
 }
 
+/* Style for links within FAQ accordion bodies */
+.accordion-body a { /* ADDED: Centralized style for FAQ links from inline HTML */
+  font-weight: bold;
+  color: var(--text-color); /* Uses text-color variable for consistency */
+}
+
+
 /* Optional: Rounded Accordion */
 .accordion-item {
   border: none;
@@ -1121,20 +1129,20 @@ footer ul li a:focus::after {
     --feature-accent-color: var(--nav-link-hover-color);
     */
   }
-  
+
   /* Estilo para a grelha de features/factos
      A classe .container do Bootstrap já deve centrar isto.
      Se precisares de um contentor específico para a grelha, podes usar .features-container
      do teu exemplo, mas certifica-te de que não entra em conflito com .container do Bootstrap.
      Para simplificar, vou aplicar os estilos da grelha diretamente. */
-  
+
   .features-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 colunas em ecrãs maiores */
     /* grid-template-rows: repeat(2, 1fr);  Pode não ser necessário se a altura for automática */
     gap: 1.5rem; /* Espaço entre os cartões (24px) */
   }
-  
+
   .feature-card {
     background-color: var(--feature-background-color);
     border-radius: 0.5rem; /* 8px */
@@ -1144,7 +1152,7 @@ footer ul li a:focus::after {
     flex-direction: column; /* Ícone e texto empilhados verticalmente */
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  
+
   .feature-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
@@ -1153,7 +1161,7 @@ footer ul li a:focus::after {
     border-color: var(--feature-accent-color);
     */
   }
-  
+
   .icon-wrapper {
     display: inline-flex; /* Para o SVG alinhar bem */
     align-items: center;
@@ -1172,7 +1180,7 @@ footer ul li a:focus::after {
     color: var(--nav-link-hover-color);
     */
   }
-  
+
   .feature-heading {
     font-family: 'Inter', sans-serif; /* Fonte do teu exemplo */
     font-weight: 600;
@@ -1181,7 +1189,7 @@ footer ul li a:focus::after {
     letter-spacing: -0.025em;
     margin-bottom: 0.5rem; /* 8px */
   }
-  
+
   .feature-subheading {
     font-family: 'Inter', sans-serif; /* Fonte do teu exemplo */
     font-size: 1rem; /* 16px */
@@ -1189,14 +1197,14 @@ footer ul li a:focus::after {
     color: var(--feature-subheading-color);
     margin-bottom: 0.75rem; /* 12px */
   }
-  
+
   .feature-body {
     font-size: 0.875rem; /* 14px */
     color: var(--feature-body-text-color);
     flex-grow: 1; /* Para que o corpo do texto ocupe o espaço restante, útil se os cartões tiverem alturas fixas ou para alinhar botões no fundo, se existissem. */
     line-height: 1.6;
   }
-  
+
   /* Media Query para responsividade (do teu exemplo) */
   @media (max-width: 768px) { /* Tablets e abaixo */
     .features-grid {
@@ -1204,7 +1212,6 @@ footer ul li a:focus::after {
       /* grid-template-rows: repeat(4, auto); Não é estritamente necessário definir linhas */
     }
   }
-  
 
 
 
@@ -1254,7 +1261,7 @@ footer ul li a:focus::after {
     object-fit: contain; /* Ensures the entire logo is visible within its bounds */
     margin: 15px auto; /* Centers the logo and adds vertical spacing */
   }
-  
+
   /* List Group Item Hover Effect (for Restaurants, Bars, etc.) */
   .list-group-item:hover {
     background-color: var(--card-bg); /* Use a light background on hover */
@@ -1291,7 +1298,7 @@ footer ul li a:focus::after {
     /* Ensure this container doesn't add extra height if the img has specific height rules */
     /* If card-img-fixed-height is on the image, this container should just wrap it. */
   }
-  
+
   .card-img-overlay-logo {
     position: absolute;
     top: 10px;          /* Adjust for vertical position from the top */
@@ -1304,7 +1311,6 @@ footer ul li a:focus::after {
     z-index: 10;        /* Ensures the logo is on top of the main image */
     object-fit: cover;  /* Ensures the logo image covers the area well if not perfectly square */
   }
-  
 
 
 
@@ -1342,7 +1348,7 @@ footer ul li a:focus::after {
   color: var(--nav-link-hover-color); /* Usa a tua cor de destaque principal */
   /* Considera adicionar um pequeno espaçamento vertical se necessário:
      position: relative;
-     top: -2px; 
+     top: -2px;
   */
 }
 
@@ -1357,11 +1363,11 @@ footer ul li a:focus::after {
 /* Ajuste para o hover do cartão de carreira para um efeito mais pronunciado se quiseres */
 .career-card:hover {
   transform: translateY(-8px); /* Eleva um pouco mais no hover */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); 
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
 .card.career-card {
-  overflow: visible; 
+  overflow: visible;
 }
 
 
@@ -1394,9 +1400,9 @@ footer ul li a:focus::after {
   background-color: var(--header-bg, #ffffff);
   z-index: 1045; /* High z-index to cover content. Bootstrap fixed-top is 1030, modals are higher. */
   overflow-y: auto; /* Allow scrolling if content exceeds height */
-  
+
   /* Base display style, d-none in HTML overrides this initially */
-  display: flex; 
+  display: flex;
   flex-direction: column;
 
   /* For transition effects controlled by JS adding/removing .active */
@@ -1415,7 +1421,7 @@ footer ul li a:focus::after {
 }
 
 .mobile-nav-overlay .mobile-nav-link {
-  font-size: 1.35rem; 
+  font-size: 1.35rem;
   font-weight: 500;
   color: var(--text-color);
   text-decoration: none;
@@ -1455,11 +1461,6 @@ footer ul li a:focus::after {
 /* =================================
  NEW MOBILE NAVIGATION & OVERLAY STYLES END
 ================================= */
-
-
-
-
-
 
 
 /* Custom styling for carousel images */
