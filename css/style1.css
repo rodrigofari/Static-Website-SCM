@@ -1497,3 +1497,127 @@ footer ul li a:focus::after {
   color: #f8f9fa;
   margin-bottom: 0;
 }
+
+
+/* Reviews Section - Adapted from original */
+.reviews-section {
+  background-color: var(--bg-color); /* Light background for the section */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.reviews-section .fw-bold { /* Re-using your existing header style */
+  color: var(--text-color);
+}
+
+.reviews-section .text-muted { /* Re-using your existing paragraph style */
+  color: var(--text-color-muted, #6c757d);
+}
+
+.review-card {
+  background-color: var(--card-bg); /* Use your existing card background */
+  border-radius: 8px; /* Standard border radius */
+  padding: 30px;
+  box-shadow: 0 4px 8px var(--box-shadow-color); /* Standard card shadow */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space to push elements apart */
+  align-items: center; /* Center content horizontally */
+  min-height: 320px; /* Adjust min-height for these cards */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.review-card .reviewer-img {
+  width: 72px; /* Size of the reviewer image */
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px; /* Space below image */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.review-card .stars {
+  color: #ffc107; /* Gold color for stars */
+  font-size: 1.1rem; /* Slightly smaller stars */
+  margin-bottom: 10px;
+}
+
+.review-card .stars .bi-star-fill,
+.review-card .stars .bi-star-half {
+  margin: 0 1px; /* Tighter spacing for stars */
+}
+
+.review-card .review-text {
+  font-size: 1rem; /* Smaller font for review text */
+  line-height: 1.5;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-style: italic;
+  flex-grow: 1; /* Allows text to grow and push name to bottom if needed */
+}
+
+.review-card .reviewer-info {
+  margin-top: auto; /* Pushes info to the bottom */
+}
+
+.review-card .reviewer-info .font-semibold {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.review-card .reviewer-info .text-gray-600 {
+  color: var(--text-color-muted, #6c757d); /* Muted color for occupation/role */
+  font-size: 0.9rem;
+}
+
+/* Carousel controls and indicators for reviews */
+#reviewsCarousel .carousel-control-prev,
+#reviewsCarousel .carousel-control-next {
+  width: 5%; /* Smaller width for controls */
+}
+
+#reviewsCarousel .carousel-control-prev-icon,
+#reviewsCarousel .carousel-control-next-icon {
+  filter: invert(1); /* Makes icons visible on light backgrounds */
+}
+
+#reviewsCarousel .carousel-indicators button {
+  background-color: var(--nav-link-hover-color); /* Match your accent color */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+#reviewsCarousel .carousel-indicators button.active {
+  background-color: var(--button-active-bg); /* Slightly darker accent for active indicator */
+}
+
+/* Responsive adjustments for review cards */
+@media (max-width: 767.98px) { /* On small screens, cards stack */
+  .review-card {
+    padding: 20px;
+    min-height: auto; /* Allow height to adjust */
+  }
+  .review-card .reviewer-img {
+    width: 60px;
+    height: 60px;
+  }
+  .review-card .review-text {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) { /* Tablets, still two columns but maybe adjust padding */
+  .review-card {
+    padding: 25px;
+    min-height: 350px; /* Adjust height for tablets */
+  }
+}
