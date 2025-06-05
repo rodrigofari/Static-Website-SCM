@@ -1621,3 +1621,38 @@ footer ul li a:focus::after {
     min-height: 350px; /* Adjust height for tablets */
   }
 }
+
+
+
+/* Custom styles for Tally Form Container */
+.tally-form-wrapper {
+  position: relative; /* Essential for absolute positioning of iframe inside */
+  height: 600px; /* Give it a fixed height */
+  width: 100%; /* Ensure it takes full width */
+  border-radius: 8px;
+  overflow: hidden; /* Hide any overflow if the form is slightly larger */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Match your existing shadow */
+  /* --- NEW: Adjust padding here --- */
+  padding: 0px; /* Remove all padding from the wrapper */
+}
+
+.tally-form-wrapper iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%; /* Fill the parent wrapper */
+  width: 100%; /* Fill the parent wrapper */
+  border: 0;
+  /* --- NEW: Potentially reduce internal margins if needed by Tally's embed --- */
+  /* This is less common but can sometimes help if Tally adds outer margins to its content */
+  /* margin: 0; */
+}
+
+/* Adjust height for smaller screens if needed */
+@media (max-width: 767.98px) {
+  .tally-form-wrapper {
+    height: 500px; /* Slightly smaller height on mobile */
+  }
+}
